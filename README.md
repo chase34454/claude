@@ -6,10 +6,10 @@ your approval, can browse the web with Playwright, and alerts you by SMS or phon
 when something goes wrong. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for design,
 threat model, limits and roadmap.
 
-## Quickstart
+## Quickstart (Python 3.11+)
 
 ```bash
-python3.11+ -m venv .venv && . .venv/bin/activate
+python3 -m venv .venv && . .venv/bin/activate
 pip install -e '.[dev]'
 cp .env.example .env      # fill in ANTHROPIC_API_KEY, optionally Twilio; then export it
 playwright install chromium   # or point FLEET_CHROMIUM_PATH at an existing Chromium
