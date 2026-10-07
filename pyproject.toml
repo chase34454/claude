@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fleet"
+version = "0.1.0"
+description = "Self-hosted agent fleet: parallel Claude agents with review, approval gates, alerts and a browser tool."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "anthropic>=1.0",
+  "playwright>=1.40",
+  "twilio>=9.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.5"]
+
+[project.scripts]
+fleet = "fleet.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["fleet*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["browser: needs a local Chromium (skipped when unavailable)"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ASYNC", "S"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B", "ASYNC110"]
